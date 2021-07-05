@@ -27,7 +27,7 @@ export function Profile({ showProfileData = true }: ProfileProps) {
         </Box>
       )}
 
-      <Menu>
+      <Menu autoSelect={false} colorScheme="pink" placement="bottom-end">
         <MenuButton borderRadius="full">
           <Avatar
             size="md"
