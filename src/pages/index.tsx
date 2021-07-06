@@ -1,12 +1,14 @@
-import { Flex, Button, Stack } from '@chakra-ui/react';
+import { Flex, Button, Stack, useColorMode } from '@chakra-ui/react';
 import { Input } from '../components/Form/Input';
 
 import { useForm, SubmitHandler } from 'react-hook-form';
 
 import * as yup from 'yup';
 
-import {yupResolver} from '@hookform/resolvers/yup';
+import { yupResolver } from '@hookform/resolvers/yup';
 import { useRouter } from 'next/router';
+
+import { DarkModeSwitch } from '../components/DarkModeSwitch';
 
 type SignInFormData = {
   email: string;
@@ -15,18 +17,31 @@ type SignInFormData = {
 
 const signInFormSchema = yup.object().shape({
   email: yup.string().required('E-mail obrigatório').email('E-mail inválido'),
-  password: yup.string().required('Senha obrigatória')
-})
+  password: yup.string().required('Senha obrigatória'),
+});
 
 export default function SignIn() {
-  const { register, handleSubmit, formState } = useForm({ resolver: yupResolver(signInFormSchema) });
+  const { colorMode } = useColorMode();
+
+  const btnBgColor = {
+    light: 'btnPrincipalBgColor',
+    dark: 'btnPrincipalBgColorDark',
+  };
+  const btnColor = {
+    light: 'btnPrincipalColor',
+    dark: 'btnPrincipalColorDark',
+  };
+
+  const { register, handleSubmit, formState } = useForm({
+    resolver: yupResolver(signInFormSchema),
+  });
   const { errors } = formState;
 
   const router = useRouter();
 
   const handleSignIn: SubmitHandler<SignInFormData> = async values => {
     await new Promise(resolve => setTimeout(resolve, 1000));
-  
+
     router.push('/dashboard');
   };
 
@@ -62,13 +77,18 @@ export default function SignIn() {
         <Button
           type="submit"
           mt="6"
-          colorScheme="pink"
+          /* bg={btnBgColor[colorMode]}
+          color={btnColor[colorMode]} */
+          /* colorScheme="pink" */
+          variant="primary"
           size="lg"
           isLoading={formState.isSubmitting}
         >
           Entrar
         </Button>
       </Flex>
+
+      <DarkModeSwitch />
     </Flex>
   );
 }

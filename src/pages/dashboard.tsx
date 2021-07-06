@@ -4,6 +4,8 @@ import { Box, Flex, SimpleGrid, Text, theme } from '@chakra-ui/react';
 import { Header } from '../components/Header';
 import { Sidebar } from '../components/Sidebar';
 
+import { DarkModeSwitch } from '../components/DarkModeSwitch';
+
 import { ApexOptions } from 'apexcharts';
 
 const Chart = dynamic(() => import('react-apexcharts'), {
@@ -84,6 +86,8 @@ export default function Dashboard() {
           </Box>
         </SimpleGrid>
       </Flex>
+
+      <DarkModeSwitch />
     </Flex>
   );
 }

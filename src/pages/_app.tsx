@@ -20,7 +20,7 @@ const queryClient = new QueryClient();
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <QueryClientProvider client={queryClient}>
-      <ChakraProvider theme={theme}>
+      <ChakraProvider resetCSS theme={theme}>
         <SidebarDrawerProvider>
           <Component {...pageProps} />
         </SidebarDrawerProvider>

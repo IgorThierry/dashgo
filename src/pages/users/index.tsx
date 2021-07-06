@@ -24,6 +24,9 @@ import Link from 'next/link';
 
 import { useQuery } from 'react-query';
 
+
+import { DarkModeSwitch } from '../../components/DarkModeSwitch';
+
 export default function UserList() {
   const { data, isLoading, error } = useQuery('users', async () => {
     const response = await fetch('http://localhost:3000/api/users');
@@ -134,6 +137,8 @@ export default function UserList() {
           )}
         </Box>
       </Flex>
+
+      <DarkModeSwitch />
     </Box>
   );
 }
