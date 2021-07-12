@@ -19,7 +19,7 @@ export function makeServer() {
           return `User ${i + 1}`;
         },
         email() {
-          return faker.internet.email().toLowerCase();
+          return  faker.internet.email().toLowerCase();
         },
         createdAt() {
           return faker.date.recent(10);
