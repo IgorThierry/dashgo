@@ -124,9 +124,9 @@ export default function UserList() {
                         <Box>
                           <ChakraLink
                             color="purple.400"
-                            onMouseEnter={() =>
+                            /* onMouseEnter={() =>
                               handlePrefetchUser(user.id)
-                            }
+                            } */
                           >
                             <Text fontWeight="bold">{user.name}</Text>
                           </ChakraLink>
