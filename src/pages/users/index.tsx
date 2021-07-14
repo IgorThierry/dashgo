@@ -26,13 +26,17 @@ import { Sidebar } from '../../components/Sidebar';
 import Link from 'next/link';
 
 import { DarkModeSwitch } from '../../components/DarkModeSwitch';
-import { useUsers } from '../../services/hooks/users/useUsers';
+import { getUsers, useUsers } from '../../services/hooks/users/useUsers';
 import { queryClient } from '../../services/queryClient';
 import { api } from '../../services/api';
+import { GetServerSideProps } from 'next';
 
 export default function UserList() {
   const [page, setPage] = useState(1);
   const { data, isLoading, isFetching, error, refetch } = useUsers(page);
+  /* const { data, isLoading, isFetching, error, refetch } = useUsers(page, {
+    initialData: usersData,
+  }); */
 
   const isWideVersion = useBreakpointValue({
     base: false,
@@ -169,3 +173,13 @@ export default function UserList() {
     </Box>
   );
 }
+
+/* export const getServerSideProps: GetServerSideProps = async () => {
+  const usersData = await getUsers(1);
+
+  return {
+    props: {
+      usersData,
+    },
+  };
+}; */
